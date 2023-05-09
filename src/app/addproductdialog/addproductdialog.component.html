@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Add Line Item</h1>
+<div mat-dialog-content>
+
+    <form [formGroup]="productForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Product Name</mat-label>
+            <input formControlName="productName" matInput placeholder="Name">
+            <!--<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Product Type</mat-label>
+            <mat-select formControlName="productCategory" [(value)]="selectedCategory">
+                <mat-option value="">None</mat-option>
+                <mat-option value="Default">Default</mat-option>
+                <mat-option value="Versionless">Versionless</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Choose a date</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <label id="example-radio-group-label"><h1>Associate Feature</h1></label>
+        <mat-radio-group formControlName="freshness" aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="freshnessValue">
+            <mat-radio-button class="example-radio-button" *ngFor="let fresh of freshnessList" [value]="fresh">
+                {{fresh}}
+            </mat-radio-button>
+        </mat-radio-group>
+        <div>Feature Associated with Product is: {{freshnessValue}}</div><br>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Additional Description</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Product ID</mat-label>
+            <input formControlName="price" matInput type="number" placeholder="Product ID">
+            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Comment</mat-label>
+            <textarea formControlName="comment" matInput></textarea>
+        </mat-form-field>
+    </form>
+
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button mat-raised-button color="primary" (click)="addProduct()">{{actBtn}}</button>
+</div>
